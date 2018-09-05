@@ -13,7 +13,7 @@ This is a Nodejs web application using Arcgis Javascript API. It is a simple too
 9. Put your csv data into './public/data' folder. Only one csv file is allowed in that folder, so you need to delete any other csv file. The data should be a zone-to-zone matrix. You can name the csv file to anything you want, and the App will show you a title with that csv file name. For example, if you put 'Auto Travel.csv' into the data folder, then the App will be named as 'Auto Travel' when browsing it.
 10. The data must have the same format as the example data located in './public/dataExample/Auto Time.csv'.
 #### From Lab Computer I
-1. Browse to the root of the folder
+1. Everything has already been set up on this computer.
 2. Open the terminal/cmd and go to the root of the App './generalHeatmap'. 
 3. Put your csv data into './public/data' folder. Only one csv file is allowed in that folder, so you need to delete any other csv file. The data should be a zone-to-zone matrix. You can name the csv file to anything you want, and the App will show you a title with that csv file name. For example, if you put 'Auto Travel.csv' into the data folder, then the App will be named as 'Auto Travel' when browsing it.
 4. The data must have the same format as the example data located in './public/dataExample/Auto Time.csv'. If you browse the csv file through Excel, [0,0] can be empty or some text.
@@ -22,12 +22,15 @@ This is a Nodejs web application using Arcgis Javascript API. It is a simple too
 2. Type 'npm start'
 2. Browse 'http://localhost:3033' or http://162.106.202.155:3033/
 
-## Use tips:
+## Tips:
+#### After you change the dataset:
+1. After you change the dataset in './public/data' folder, you should go to the terminal, terminate it if it is running, and rerun it by typing 'npm start'. If you forget to do this step, the app will run into error.
+
 #### If you want to make another new App renderring a new csv file at another port other than '3033':
  1. Copy and paste all the content into a new folder
  2. Change the csv file into a new one in 'public/data'
  3. Open 'bin/www.js' file, and search for '3033'
- 4. Simply change '3033' to another four-digits number (3036, 5025, 4022 or such).
+ 4. Simply change '3033' to another four-digits number (5025, 4022 or such).
  5. Then, just follow the procedure in the 'Run' section
 
 #### If you want to update the TravelZoneLayer shape file:
