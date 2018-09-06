@@ -15,7 +15,6 @@ function brushMap(error,csvFile){
       "esri/geometry/Polyline",
       "esri/geometry/Extent",
       "dojo/dom-construct",
-      "esri/tasks/query",
       "esri/dijit/Popup",
       "esri/dijit/PopupTemplate",
       "dojo/dom-class",
@@ -26,8 +25,7 @@ function brushMap(error,csvFile){
         "esri/renderers/ClassBreaksRenderer","esri/renderers/HeatmapRenderer",
         "esri/Color", "dojo/dom-style", "dojo/domReady!"
     ], function(Polyline,
-      Extent,domConstruct,
-      Query,Popup, PopupTemplate,domClass,BasemapToggle,Legend,Map, FeatureLayer,
+      Extent,domConstruct,Popup, PopupTemplate,domClass,BasemapToggle,Legend,Map, FeatureLayer,
         InfoTemplate, SimpleFillSymbol,SimpleLineSymbol,
         ClassBreaksRenderer,HeatmapRenderer,
         Color, domStyle
@@ -78,12 +76,6 @@ function brushMap(error,csvFile){
         travelZoneLayer.on('click',function(evt){
             var graphic = evt.graphic;
             selectZone = graphic.attributes.TAZ_New;
-            var query = new Query();
-            query.geometry = pointToExtent(map, event.mapPoint, 10);
-            var deferred = travelZoneLayer.selectFeatures(query,
-              travelZoneLayer.SELECTION_NEW);
-            map.infoWindow.setFeatures([deferred]);
-            map.infoWindow.show(event.mapPoint);
             travelZoneCentroidLayer.redraw();
         })
         //mouse over event
@@ -112,6 +104,7 @@ function brushMap(error,csvFile){
         largestIndividualArray = findRangeForIndividualCalcultion();
         sort = Object.values(largestIndividualArray).sort((prev,next)=>prev-next); //from smallest to largest
         sort = sort.map(x =>x.toFixed(2)); //make legend to 2 decimal numbers.
+        console.log(sort[1600])
 
         var chunkZones = 89;         
         var symbol = new SimpleFillSymbol(); 
@@ -127,11 +120,11 @@ function brushMap(error,csvFile){
                    return dataMatrix[selectZone][feature.attributes.TAZ_New]+1;
                  }
                  else{
-                   return dataMatrix[feature.attributes.TAZ_New][selectZone];
+                   return dataMatrix[feature.attributes.TAZ_New][selectZone]+1;
                  }
             },
-            blurRadius: 15,
-            maxPixelIntensity: 15,
+            blurRadius: 17,
+            maxPixelIntensity:15, //need change if the dataset changes
             minPixelIntensity:0
         });
         heatmapRenderer.setColorStops([
@@ -143,7 +136,7 @@ function brushMap(error,csvFile){
         { ratio: 0.95, color: "rgb(255, 200, 0)"}]);
        //legend. If you want to change legend scale or legend color, this part of code needs to be modified
       travelZoneCentroidLayer.setRenderer(heatmapRenderer);
-       //legend  
+  
   
         map.on('load',function(){
             map.addLayer(travelZoneLayer);

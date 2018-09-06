@@ -71,15 +71,9 @@ function brushMap(error,csvFile){
         });
         //click on travelZoneLayer event
         travelZoneLayer.on('click',function(evt){
-            var graphic = evt.graphic;
-            selectZone = graphic.attributes.TAZ_New;
-            var query = new Query();
-            query.geometry = pointToExtent(map, event.mapPoint, 10);
-            var deferred = travelZoneLayer.selectFeatures(query,
-              travelZoneLayer.SELECTION_NEW);
-            map.infoWindow.setFeatures([deferred]);
-            map.infoWindow.show(event.mapPoint);
-            travelZoneLayer.redraw();
+          var graphic = evt.graphic;
+          selectZone = graphic.attributes.TAZ_New;
+          travelZoneCentroidLayer.redraw();
         })
         //mouse over event
         travelZoneLayer.on('mouse-over',function(evt){
