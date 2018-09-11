@@ -25,7 +25,7 @@ This is a Nodejs web application using Arcgis Javascript API. It is a simple too
 
 ## Tips:
 #### After you change the dataset:
-1. After you change the dataset in './public/data' folder, you should go to the terminal, terminate it if it is running, and rerun it by typing 'npm start'. If you forget to do this step, the app will run into error.
+1. After you change the dataset in './public/data' folder, you should go to the terminal, terminate it if it is running, and rerun it by typing 'npm start'. *If you forget to do this step, the app will run into error.
 
 #### If you want to make another new App renderring a new csv file at another port other than '3033':
  1. Copy and paste all the content into a new folder
