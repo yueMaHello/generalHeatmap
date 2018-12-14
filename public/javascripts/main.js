@@ -1,3 +1,13 @@
+/*
+This app is very simple which is used to plot any zone-to-zone matrix on the map.
+You can replace the data stored in './dataExample', and the name of the csv file can be changed as well.
+The app will automatically change its title into csv file's name. Only one csv file is allowed in the '/data' folder.
+One important thing should keep in mind is that after you update the dataset, you have to restart the web server through the terminal;
+otherwise, it will run into error.
+
+*/
+//If you change the travel zone layer's attribute name, this variable should be changed correspondingly
+let travelZoneAttributeID = 'TAZ_New';
 var map;
 var csvFileName = '../data/'+title+'.csv';
 var dataMatrix;
@@ -71,14 +81,20 @@ function brushMap(error,csvFile){
         });
         //click on travelZoneLayer event
         travelZoneLayer.on('click',function(evt){
-          var graphic = evt.graphic;
-          selectZone = graphic.attributes.TAZ_New;
-          travelZoneCentroidLayer.redraw();
-        })
+            var graphic = evt.graphic;
+            selectZone = graphic.attributes[travelZoneAttributeID];
+            var query = new Query();
+            query.geometry = pointToExtent(map, event.mapPoint, 10);
+            var deferred = travelZoneLayer.selectFeatures(query,
+              travelZoneLayer.SELECTION_NEW);
+            map.infoWindow.setFeatures([deferred]);
+            map.infoWindow.show(event.mapPoint);
+            travelZoneLayer.redraw();
+        });
         //mouse over event
         travelZoneLayer.on('mouse-over',function(evt){
             var graphic = evt.graphic;
-            hoverZone = graphic.attributes.TAZ_New;
+            hoverZone = graphic.attributes[travelZoneAttributeID];
             var access;
             if(check === false){
               access = dataMatrix[selectZone][hoverZone];
@@ -106,10 +122,10 @@ function brushMap(error,csvFile){
         var symbol = new SimpleFillSymbol(); 
         var renderer = new ClassBreaksRenderer(symbol, function(feature){
           if(check === false){
-            return dataMatrix[selectZone][feature.attributes.TAZ_New];
+            return dataMatrix[selectZone][feature.attributes[travelZoneAttributeID]];
           }
           else{
-            return dataMatrix[feature.attributes.TAZ_New][selectZone];
+            return dataMatrix[feature.attributes[travelZoneAttributeID]][selectZone];
           }
        });
        //legend. If you want to change legend scale or legend color, this part of code needs to be modified
@@ -159,7 +175,7 @@ function brushMap(error,csvFile){
         }
         function getTextContent (graphic) {
           var speciesName = "<b>Value: </b><br/>" +
-                          "<i>" + accessibilityResult[graphic.attributes.TAZ_New] + "</i>";
+                          "<i>" + accessibilityResult[graphic.attributes[travelZoneAttributeID]] + "</i>";
           return  speciesName;
         }
         //'origin to destination' or 'destination to origin

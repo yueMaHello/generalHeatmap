@@ -1,6 +1,6 @@
 //this is a automatic UI test, actually, just for fun
 //You can run it through another CMD (why another? since you have to use a CMD to keep the app running and test it through another termianl)
-// type: "testcafe-live chrome test.js"
+// type: "testcafe-live chrome main.js"
 //it will open a browser and run itself
 //what you need to do is to watch a movie....
 import { Selector } from 'testcafe';

@@ -35,15 +35,15 @@ This is a Nodejs web application using Arcgis Javascript API. It is a simple too
 
 #### If you want to update the TravelZoneLayer shape file:
  1. The map layer is not stored in localhost. It is stored in the arcgis online server.
- 2. In './public/javascript/test.js', you can find the current travel zone layer: 'https://services8.arcgis.com/FCQ1UtL7vfUUEwH7/arcgis/rest/services/newestTAZ/FeatureServer/0'. If you want to change it to another layer, you can create you own arcgis online account and upload the layer to the arcgis server. You need to replace the url into a new one. You can also ask Sandeep to access Yue Ma's arcgis account.
+ 2. In './public/javascript/main.js', you can find the current travel zone layer: 'https://services8.arcgis.com/FCQ1UtL7vfUUEwH7/arcgis/rest/services/newestTAZ/FeatureServer/0'. If you want to change it to another layer, you can create you own arcgis online account and upload the layer to the arcgis server. You need to replace the url into a new one. You can also ask Sandeep to access Yue Ma's arcgis account.
 #### If you want to change the legend:
-1. Open './public/javascripts/test.js' file, search 'readerer.addBreak' to show that part of code.
+1. Open './public/javascripts/main.js' file, search 'readerer.addBreak' to show that part of code.
 2. Right now, the break points all are calculated based on data of zone[101]. It can adjust the legend to suit different dataset. If you want to change the break points, you could just manually change 'sort[chunkZone]' to some specific value. 
       For exampe:
       * renderer.addBreak(0, 70, new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID,new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID,new Color([0,0,0,0.1]),1)).setColor(new Color([255, 255, 255,0.90])));
       * renderer.addBreak(70, 150, new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID,new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID,new Color([0,0,0,0.1]),1)).setColor(new Color([249, 238, 237,0.90])));
 #### If you want to change the legend color:
-1. Open './public/javascripts/test.js' file, search 'readerer.addBreak' to show that part of code.
+1. Open './public/javascripts/main.js' file, search 'readerer.addBreak' to show that part of code.
 2. Change 'new Color([255, 255, 255,0.90])' to some other RGB color.
       
 #### Woops, the App can't run after changing a new dataset:
