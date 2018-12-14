@@ -1,5 +1,6 @@
 # General Heatmap
-This is a Nodejs web application using Arcgis Javascript API. It is a simple tool which can be modified to display any zone-to-zone matrix.
+This is a Nodejs web application using Arcgis Javascript API. It is a simple tool which can be modified easily to display any zone-to-zone matrix. The map is interactive. If the user click on the travel zone layer, the whole map will be brushed again based on the value of that zone.
+
 ## Set Up:
 #### From Github:
 1. If you haven't downloaded Nodejs on your computer, you need to download it and add it into PATH.
@@ -24,7 +25,7 @@ This is a Nodejs web application using Arcgis Javascript API. It is a simple too
 
 ## Tips:
 #### After you change the dataset:
-1. After you change the dataset in './public/data' folder, you should go to the terminal, terminate it if it is running, and rerun it by typing 'npm start'. If you forget to do this step, the app will run into error.
+1. After you change the dataset in './public/data' folder, you should go to the terminal, terminate it if it is running, and rerun it by typing 'npm start'. _If you forget to do this step, the app will run into error_.
 
 #### If you want to make another new App renderring a new csv file at another port other than '3033':
  1. Copy and paste all the content into a new folder
