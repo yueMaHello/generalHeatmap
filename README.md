@@ -21,7 +21,7 @@ This is a Nodejs web application using Arcgis Javascript API. It is a simple too
 ## Run
 1. Use terminal/cmd to go to the root of the App './generalHeatmap'. 
 2. Type 'npm start'
-2. Browse 'http://localhost:3033' or http://162.106.202.155:3033/
+2. Browse 'http://localhost:3033'  
 
 ## Tips:
 #### After you change the dataset:
